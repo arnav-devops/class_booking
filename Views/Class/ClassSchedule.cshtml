@@ -1,0 +1,97 @@
+﻿@model IEnumerable<ClassTest.Models.ClassSchedule>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+<style>
+    $shopping-cart-red: #DF0000;
+
+    .fa-stack[data-count]:after {
+        position: absolute;
+        right: 0%;
+        top: 0%;
+        content: attr(data-count);
+        font-size: 40%;
+        padding: .6em;
+        border-radius: 999px;
+        line-height: .75em;
+        color: white;
+        color: $shopping-cart-red;
+        text-align: center;
+        min-width: 2em;
+        font-weight: bold;
+        background: white;
+        border-style: solid;
+    }
+
+    .fa-circle {
+        color: #DF0000;
+    }
+
+    .red-cart {
+        color: #DF0000;
+        background: white;
+    }
+</style>
+
+<h5>Time Left: </h5>
+<h1>Claim Your Free Trial Class</h1>
+<div style="text-align:right">
+
+
+    <a href="@Url.Action("Create", "Class")" class="elements">
+
+        <span class="fa-stack fa-2x has-badge" data-count="5">
+            <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+            <i style="" class="fa fa-shopping-cart fa-stack-2x red-cart"></i>
+        </span>
+    </a>
+
+
+
+</div>
+
+
+<div class="container">
+    <h3>Class Schedule</h3>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Availability</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var schedule in Model)
+                        {
+                            <tr>
+                                <th scope="row">@schedule.Date</th>
+                                <td>@schedule.Time</td>
+                                <td>@schedule.Availability</td>
+                                <td>
+                                    @if (schedule.Availability == "Full")
+                                    {
+                                        <button type="button" class="btn btn-primary">Full</button>
+                                    }
+                                    else
+                                    {
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Book Now</button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
